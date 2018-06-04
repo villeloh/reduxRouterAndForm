@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 
@@ -12,6 +13,7 @@ class PostsIndex extends Component {
 
   renderPosts = () => {
 
+    // lodash's .map() function works on objects!
     return _.map(
       this.props.posts, 
       post => { 
@@ -28,6 +30,11 @@ class PostsIndex extends Component {
 
     return (
       <div>
+        <div className="text-xs-right">
+          <Link className="btn btn-primary" to="/posts/new">
+            Add a Post
+          </Link>
+        </div>
         <h3>Posts</h3>
         <ul className="list-group">
           {this.renderPosts()}
