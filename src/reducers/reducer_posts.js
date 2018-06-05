@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { FETCH_POSTS, FETCH_POST }from '../actions'; // no need to specify the file, since we're importing from index.js
+import { FETCH_POSTS, FETCH_POST, DELETE_POST }from '../actions'; // no need to specify the file, since we're importing from index.js
 
 export default (state = {}, action) => {
 
@@ -18,6 +18,9 @@ export default (state = {}, action) => {
 
       // ES6 equivalent:
       return { ...state, [action.payload.data.id]: action.payload.data };
+
+    case DELETE_POST:
+      return _.omit(state, action.payload); // action.payload = id; it deletes the entry under that key from the state object and return a new object without it
 
     default:
       return state;
